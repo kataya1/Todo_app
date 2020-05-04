@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+        #error{
+            background-color: tomato;
+            color: white;
+            
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div id="error" class="hidden">
+            something is wrong
+        </div>
+        <div>
+            <label for="post">post</label>
+            <input type="text" name="todo" id="post">
+            <input type="submit" value="Create">
+        </div>
+    </form>
+    <ul>
+        {% for d in data %}
+        <li>{{ d.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+<script src="../static/js/form.js"></script>
+<!-- demo -->
+</html>
