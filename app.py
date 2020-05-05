@@ -1,3 +1,4 @@
+# snapshot of the work that have been done up till part2 finale
 from flask import Flask, render_template, request, json, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 # it create an applictation that gets named after this file which is app in this case, __name__ =  'app'
