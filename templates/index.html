@@ -11,9 +11,30 @@
         #error{
             background-color: tomato;
             color: white;
+        }
+        ul{
+            list-style: none;
+            max-width: 30%;
+        }
+        li{
+            height: 1.5rem;
+        }
+        li button{
+            --webkit-appearance: none;
+            background-color: #fff;
+            border:none;
+            outline: none;
+            border-style: none;
+            color: red;
+            font-size: medium;
+            cursor: pointer;
+            float: right;
+            height: min-content;
+            
             
         }
     </style>
+    <script src="../static/js/form.js" defer></script>
 </head>
 <body>
     <form>
@@ -28,10 +49,10 @@
     </form>
     <ul>
         {% for d in data %}
-        <li>{{ d.description }}</li>
+        <li><input type="checkbox" data-id="{{ d.id }}" class="check-completed" name="checkbox" {% if d.completed %} checked {% endif %}>{{ d.description }}<button data-id="{{ d.id}}" class="delete-button">&cross;</button></li>
         {% endfor %}
     </ul>
 </body>
-<script src="../static/js/form.js"></script>
+
 <!-- demo -->
 </html>
