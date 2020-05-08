@@ -14,44 +14,89 @@
         }
         ul{
             list-style: none;
-            max-width: 30%;
+            width: max-content;
+            padding: 0;
         }
         li{
             height: 1.5rem;
+            width: auto;
+            padding: 0.5em;
+            margin: 0.1em;
         }
         li button{
             --webkit-appearance: none;
-            background-color: #fff;
+            background-color: inherit;
+            border-radius: 100%;
             border:none;
             outline: none;
-            border-style: none;
             color: red;
             font-size: medium;
             cursor: pointer;
             float: right;
-            height: min-content;
-            
-            
+            height: min-content;  
         }
+        button:hover{
+            background-color: red;
+            color: white
+        }
+        li:nth-child(even){
+            background-color: #eee;
+        }
+        #flex_container{
+            display:flex;  
+            align-items: top;
+            justify-content: center; 
+        }
+        p{
+            text-align: center;
+        }
+        section{
+            padding: 2em;
+        }
+        
     </style>
     <script src="../static/js/form.js" defer></script>
 </head>
 <body>
-    <form>
-        <div id="error" class="hidden">
-            something is wrong
-        </div>
-        <div>
-            <label for="post">post</label>
-            <input type="text" name="todo" id="post">
-            <input type="submit" value="Create">
-        </div>
-    </form>
-    <ul>
-        {% for d in data %}
-        <li><input type="checkbox" data-id="{{ d.id }}" class="check-completed" name="checkbox" {% if d.completed %} checked {% endif %}>{{ d.description }}<button data-id="{{ d.id}}" class="delete-button">&cross;</button></li>
-        {% endfor %}
-    </ul>
+    <div id="app_container">
+    <section id="flex_container">
+        <section>
+            <form class="list">
+                <div id="list_error" class="hidden">
+                    something is wrong
+                </div>
+                <div>
+                    <label for="list">list name</label>
+                    <input type="text" name="list" id="list_post">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+            <ul class="list">
+                {% for list in lists %}
+                <li><a href="{{ list.id }}">{{ list.name }}</a><button data-id="{{ list.id }}" class="delete_button">&cross;</button></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <p id="active_list" data-id="{{active_list.id}}" >{{ active_list.name }}</p>
+            <form class="todo">
+                <div id="todo_error" class="hidden">
+                    something is wrong
+                </div>
+                <div>
+                    <label for="todo">todo description</label>
+                    <input type="text" name="todo" id="todo_post">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+            <ul class="todo">
+                {% for todo in todos %}
+                <li><input type="checkbox" data-id="{{ todo.id }}" class="check-completed" name="checkbox" {% if todo.completed %} checked {% endif %}>{{ todo.description }}<button data-id="{{ todo.id }}" class="delete_button">&cross;</button></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </section>
+    </div>
 </body>
 
 <!-- demo -->
